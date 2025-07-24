@@ -1,0 +1,5 @@
+spring:
+  application.name: multithreading-stocks
+
+
+api-key-alphavantage: ${API_KEY}
