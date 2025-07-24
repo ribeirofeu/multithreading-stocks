@@ -1,4 +1,4 @@
-package com.software.multithreading_stocks;
+package com.software.mtstocks;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,5 +1,7 @@
 spring:
   application.name: multithreading-stocks
 
+alphavantage:
+  api-key: ${API_KEY}
+  url: https://www.alphavantage.co/query?function={function}&symbol={symbol}&apikey={apikey}
 
-api-key-alphavantage: ${API_KEY}

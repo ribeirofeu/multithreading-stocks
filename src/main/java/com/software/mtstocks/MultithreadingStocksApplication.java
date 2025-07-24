@@ -1,4 +1,4 @@
-package com.software.multithreading_stocks;
+package com.software.mtstocks;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
