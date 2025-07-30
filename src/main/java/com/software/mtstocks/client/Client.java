@@ -1,43 +1,30 @@
 package com.software.mtstocks.client;
 
-import com.software.mtstocks.models.GlobalQuoteResponse;
+import com.software.mtstocks.models.dto.GlobalQuoteResponse;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientException;
-import org.springframework.web.util.UriBuilder;
-
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 @Slf4j
-public class AlphaVantageClient {
-
-  // https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=BUY07EK7UYI9SX9B
+public class Client {
 
   @Value("${alphavantage.url}")
   private String url;
 
-  @Value("${alphavantage.api-key}")
-  private String apiKey;
-
   @Autowired private WebClient webClient;
 
-  public GlobalQuoteResponse getStockStats(String symbol, String function) {
+  public GlobalQuoteResponse getStockStats(String symbol) {
 
-    log.info("Get Stock {} information - function {}", symbol, function);
-    log.info(apiKey);
+    log.info("Get Stock {} information", symbol);
 
     Map<String, String> variables = new HashMap<>();
     variables.put("symbol",symbol);
-    variables.put("function",function);
-    variables.put("apikey",apiKey);
-
-
     try {
       return webClient
           .get()
@@ -45,8 +32,9 @@ public class AlphaVantageClient {
           .retrieve()
           .bodyToMono(GlobalQuoteResponse.class)
           .block();
+
     } catch (WebClientException e) {
-      log.error("Error", e);
+      log.error("Error call stock client", e);
       throw e;
     }
   }

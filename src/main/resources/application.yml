@@ -3,5 +3,5 @@ spring:
 
 alphavantage:
   api-key: ${API_KEY}
-  url: https://www.alphavantage.co/query?function={function}&symbol={symbol}&apikey={apikey}
+  url: http://localhost:5000/api/stocks?symbol={symbol}
 
